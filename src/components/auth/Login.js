@@ -36,6 +36,7 @@ const Login = () => {
           <div className="campo-form">
             <label htmlFor="email">Email</label>
             <input
+              autocomplete="off"
               type="email"
               id="email"
               name="email"
@@ -47,6 +48,7 @@ const Login = () => {
           <div className="campo-form">
             <label htmlFor="password">Password</label>
             <input
+              autocomplete="off"
               type="password"
               id="password"
               name="password"
@@ -64,7 +66,9 @@ const Login = () => {
             />
           </div>
         </form>
-        <Link to={"/new-account"} className="enlace-cuenta" >Get Account</Link>
+        <Link to={"/new-account"} className="enlace-cuenta">
+          Get Account
+        </Link>
       </div>
     </div>
   );
