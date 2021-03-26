@@ -11,7 +11,7 @@ const Sidebar = () => {
       <NewProject />
 
       <div className="proyectos">
-        <h2>Tus Proyectos</h2>
+        <h2>Your Projects</h2>
         <ListProjects />
       </div>
     </aside>
