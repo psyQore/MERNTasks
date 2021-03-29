@@ -19,7 +19,7 @@ const ListTasks = () => {
             <p>There is no Task </p>
           </li>
         ) : (
-          tasksProject.map((task) => <Task task={task} />)
+          tasksProject.map((task) => <Task key={task.name} task={task} />)
         )}
       </ul>
       <button type="button" className="btn btn-eliminar">

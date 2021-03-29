@@ -36,7 +36,7 @@ const Login = () => {
           <div className="campo-form">
             <label htmlFor="email">Email</label>
             <input
-              autocomplete="off"
+              autoComplete="off"
               type="email"
               id="email"
               name="email"
@@ -48,7 +48,7 @@ const Login = () => {
           <div className="campo-form">
             <label htmlFor="password">Password</label>
             <input
-              autocomplete="off"
+              autoComplete="off"
               type="password"
               id="password"
               name="password"

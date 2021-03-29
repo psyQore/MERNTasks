@@ -1,22 +1,23 @@
-import React from "react";
-import Project from './Project';
+import React, { useContext } from "react";
+import Project from "./Project";
+import projectContext from "../../context/projects/projectContext";
 
 const ListProjects = () => {
-  const projects = [
-    { name: "Tienda Virtual" },
-    { name: "Intranet" },
-    { name: "Diseño de Sitios Web" },
-  ];
+
+  // Extraer proyectos de state incicial
+  const projectsContext = useContext(projectContext);
+  const { projects } = projectsContext;
+
+  // Revisar si projects tiene algo
+  if(projects.length === 0 ) return null;
 
   return (
     <ul className="listado-proyectos">
-     {projects.map(project => (
-            <Project 
-                project={project}
-            />
-        ))}
+      {projects.map((project) => (
+        <Project key={project.id} project={project} />
+      ))}
     </ul>
-  )
-}
+  );
+};
 
 export default ListProjects;

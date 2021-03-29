@@ -2,7 +2,8 @@ import React, { Fragment, useState, useContext } from "react";
 import projectContext from "../../context/projects/projectContext";
 
 const NewProject = () => {
-  // Obtener el state del form
+
+  // Obtener el state del contextProject
   const projectsContext = useContext(projectContext);
   const { form, showForm } = projectsContext;
 

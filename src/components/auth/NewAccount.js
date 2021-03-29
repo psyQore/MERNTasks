@@ -43,7 +43,7 @@ const NewAccount = () => {
           <div className="campo-form">
             <label htmlFor="name">Name</label>
             <input
-              autocomplete="off"
+              autoComplete="off"
               type="text"
               id="name"
               name="name"
@@ -55,7 +55,7 @@ const NewAccount = () => {
           <div className="campo-form">
             <label htmlFor="email">Email</label>
             <input
-              autocomplete="off"
+              autoComplete="off"
               type="email"
               id="email"
               name="email"
@@ -67,7 +67,7 @@ const NewAccount = () => {
           <div className="campo-form">
             <label htmlFor="password">Password</label>
             <input
-              autocomplete="off"
+              autoComplete="off"
               type="password"
               id="password"
               name="password"
@@ -79,7 +79,7 @@ const NewAccount = () => {
           <div className="campo-form">
             <label htmlFor="confirm">Confirm Password</label>
             <input
-              autocomplete="off"
+              autoComplete="off"
               type="password"
               id="confirm"
               name="confirm"
