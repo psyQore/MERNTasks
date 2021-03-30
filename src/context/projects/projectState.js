@@ -1,9 +1,10 @@
 import React, { useReducer } from "react";
 
+import uuid from "uuid/dist/v4";
+
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
-import { FORM_PROJECT, GET_PROJECTS } from "../../types";
-
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT } from "../../types";
 
 const ProjectState = (props) => {
   const projects = [
@@ -32,8 +33,19 @@ const ProjectState = (props) => {
   const getProjects = () => {
     dispatch({
       type: GET_PROJECTS,
-      payload: projects
-    })
+      payload: projects,
+    });
+  };
+
+  // Agregar nuevo proyecto
+  const addProject = (project) => {
+    project.id = uuid();
+
+    // Insertar el proyecto en el state
+    dispatch({
+      type: ADD_PROJECT,
+      payload: project,
+    });
   };
 
   return (
@@ -42,7 +54,8 @@ const ProjectState = (props) => {
         projects: state.projects,
         form: state.form,
         showForm,
-        getProjects
+        getProjects,
+        addProject,
       }}
     >
       {props.children}

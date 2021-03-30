@@ -1,4 +1,4 @@
-import { FORM_PROJECT, GET_PROJECTS } from "../../types"
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT } from "../../types";
 
 // eslint-disable-next-line
 export default (state, action) => {
@@ -6,13 +6,19 @@ export default (state, action) => {
     case FORM_PROJECT:
       return {
         ...state,
-        form: true
-      }
+        form: true,
+      };
     case GET_PROJECTS:
       return {
         ...state,
-        projects: action.payload
-      }
+        projects: action.payload,
+      };
+    case ADD_PROJECT:
+      return {
+        ...state,
+        projects: [...state.projects, action.payload],
+        form: false
+      };
     default:
       return state;
   }

@@ -2,10 +2,9 @@ import React, { Fragment, useState, useContext } from "react";
 import projectContext from "../../context/projects/projectContext";
 
 const NewProject = () => {
-
   // Obtener el state del contextProject
   const projectsContext = useContext(projectContext);
-  const { form, showForm } = projectsContext;
+  const { form, showForm, addProject } = projectsContext;
 
   // State para proyecto
   const [project, saveProject] = useState({
@@ -24,10 +23,17 @@ const NewProject = () => {
     e.preventDefault();
 
     // Validar el proyecto
+    if (name === "") {
+      return;
+    }
 
     // Agregar al state
+    addProject(project);
 
     // Reiniciar el form
+    saveProject({
+      name: "",
+    });
   };
 
   // Destructuring para sacar name
@@ -48,6 +54,7 @@ const NewProject = () => {
       {form ? (
         <form className="formulario-nuevo-proyecto" onSubmit={onSubmitProject}>
           <input
+          autoComplete="off"
             type="text"
             className="input-text"
             placeholder="Project Name"
