@@ -4,7 +4,12 @@ import uuid from "uuid/dist/v4";
 
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT } from "../../types";
+import {
+  FORM_PROJECT,
+  GET_PROJECTS,
+  ADD_PROJECT,
+  VALIDATE_FORM,
+} from "../../types";
 
 const ProjectState = (props) => {
   const projects = [
@@ -17,6 +22,7 @@ const ProjectState = (props) => {
   const initialState = {
     projects: [],
     form: false,
+    errorform: false
   };
 
   // Dispatch para ejecutar las acciones
@@ -48,14 +54,22 @@ const ProjectState = (props) => {
     });
   };
 
+  const showError = () => {
+    dispatch({
+      type: VALIDATE_FORM,
+    });
+  };
+
   return (
     <projectContext.Provider
       value={{
         projects: state.projects,
         form: state.form,
+        errorform: state.errorform,
         showForm,
         getProjects,
         addProject,
+        showError
       }}
     >
       {props.children}

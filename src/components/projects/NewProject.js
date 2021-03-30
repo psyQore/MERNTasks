@@ -4,7 +4,7 @@ import projectContext from "../../context/projects/projectContext";
 const NewProject = () => {
   // Obtener el state del contextProject
   const projectsContext = useContext(projectContext);
-  const { form, showForm, addProject } = projectsContext;
+  const { form, errorform, showForm, addProject, showError } = projectsContext;
 
   // State para proyecto
   const [project, saveProject] = useState({
@@ -24,6 +24,7 @@ const NewProject = () => {
 
     // Validar el proyecto
     if (name === "") {
+      showError();
       return;
     }
 
@@ -54,7 +55,7 @@ const NewProject = () => {
       {form ? (
         <form className="formulario-nuevo-proyecto" onSubmit={onSubmitProject}>
           <input
-          autoComplete="off"
+            autoComplete="off"
             type="text"
             className="input-text"
             placeholder="Project Name"
@@ -68,6 +69,9 @@ const NewProject = () => {
             value="Add Project"
           />
         </form>
+      ) : null}
+      {errorform ? (
+        <p className="mensaje error">The name of the project is required</p>
       ) : null}
     </Fragment>
   );
