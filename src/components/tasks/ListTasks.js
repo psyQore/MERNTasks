@@ -1,7 +1,18 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Task from "./Task";
+import projectContext from "../../context/projects/projectContext";
 
 const ListTasks = () => {
+  // Obtener el state del contextProject
+  const projectsContext = useContext(projectContext);
+  const { project } = projectsContext;
+
+  // Si no hay project seleccionado
+  if (!project) return <h2>Select a Project</h2>;
+
+  // Array destructuring para extraer el project actual
+  const [projectActual] = project;
+
   const tasksProject = [
     { name: "Elegit Plataforma", status: true },
     { name: "Elegit Color", status: true },
@@ -11,7 +22,7 @@ const ListTasks = () => {
 
   return (
     <Fragment>
-      <h2>Project: Tienda Virtual</h2>
+      <h2>Project: {projectActual.name}</h2>
 
       <ul className="listado-tareas">
         {tasksProject.length === 0 ? (
