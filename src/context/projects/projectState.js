@@ -4,11 +4,13 @@ import uuid from "uuid/dist/v4";
 
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
+
 import {
   FORM_PROJECT,
   GET_PROJECTS,
   ADD_PROJECT,
   VALIDATE_FORM,
+  ACTUAL_PROJECT,
 } from "../../types";
 
 const ProjectState = (props) => {
@@ -23,7 +25,7 @@ const ProjectState = (props) => {
     projects: [],
     form: false,
     errorform: false,
-    project: null 
+    project: null,
   };
 
   // Dispatch para ejecutar las acciones
@@ -61,6 +63,14 @@ const ProjectState = (props) => {
     });
   };
 
+  // Selecciona el proyecto que el usuario dio click
+  const projectActual = (projectId) => {
+    dispatch({
+      type: ACTUAL_PROJECT,
+      payload: projectId,
+    });
+  };
+
   return (
     <projectContext.Provider
       value={{
@@ -71,7 +81,8 @@ const ProjectState = (props) => {
         showForm,
         getProjects,
         addProject,
-        showError
+        showError,
+        projectActual,
       }}
     >
       {props.children}
