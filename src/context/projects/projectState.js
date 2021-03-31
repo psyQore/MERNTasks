@@ -22,7 +22,8 @@ const ProjectState = (props) => {
   const initialState = {
     projects: [],
     form: false,
-    errorform: false
+    errorform: false,
+    project: null 
   };
 
   // Dispatch para ejecutar las acciones
@@ -66,6 +67,7 @@ const ProjectState = (props) => {
         projects: state.projects,
         form: state.form,
         errorform: state.errorform,
+        project: state.project,
         showForm,
         getProjects,
         addProject,
