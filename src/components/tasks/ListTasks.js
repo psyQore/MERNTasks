@@ -14,10 +14,7 @@ const ListTasks = () => {
   const [projectActual] = project;
 
   const tasksProject = [
-    { name: "Elegit Plataforma", status: true },
-    { name: "Elegit Color", status: true },
-    { name: "Elegit Plataforma de Pago", status: true },
-    { name: "Elegit Hosting", status: true },
+
   ];
 
   return (
