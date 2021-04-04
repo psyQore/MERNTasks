@@ -1,41 +1,60 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import projectContext from "../../context/projects/projectContext";
+import TaskContext from "../../context/tasks/taskContext";
 
 const FormTask = () => {
+  // Extraer si un proyecto esta activo
+  const projectsContext = useContext(projectContext);
+  const { project } = projectsContext;
 
-    // Extraer si un proyecto esta activo
-    const projectsContext = useContext(projectContext);
-    const { project } = projectsContext;
+  const taskContext = useContext(TaskContext);
+  const { addTask } = taskContext;
 
-      // Si no hay project seleccionado
+  // State del form
+  const [task, saveTask] = useState({
+    name: "",
+  });
+
+  // Destructuring del state
+  const { name } = task;
+
+  // Si no hay project seleccionado
   if (!project) return null;
 
   // Array destructuring para extraer el project actual
   const [projectActual] = project;
 
+  // Leer los valores del form
 
-  
-  const onSubmit = e => {
+  const handleChange = (e) => {
+    saveTask({
+      ...task,
+      [e.target.name]: e.target.value,
+    });
+  };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
     // Validar
-
     // Pasar la validacion
-
     // Agregar la nueva task al state de tasks
-
+    task.projectId = projectActual.id;
+    task.status = false;
+    addTask(task);
     // Reiniciar el form
-  }
+  };
+
   return (
     <div className="formulario">
-      <form
-        onSubmit={onSubmit}
-      >
+      <form onSubmit={onSubmit}>
         <div className="contenedor-input">
           <input
             type="text"
             className="input-text"
             placeholder="Name Task..."
             name="name"
+            value={name}
+            onChange={handleChange}
           />
         </div>
         <div className="contenedor-input">
