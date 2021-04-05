@@ -2,7 +2,7 @@ import React, { useReducer } from "react";
 import TaskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
 
-import { TASKS_PROJECT, ADD_TASK } from "../../types";
+import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK } from "../../types";
 
 const TaskState = (props) => {
   const initialState = {
@@ -19,6 +19,7 @@ const TaskState = (props) => {
       { name: "Elegir Plataforma", status: true, projectId: 4 },
     ],
     tasksproject: null,
+    errortask: false,
   };
 
   // Crear el dispatch y state
@@ -41,13 +42,22 @@ const TaskState = (props) => {
       payload: task,
     });
 
+  // Valida y muestra un error en caso de que sea necesario
+  const validateTask = () => {
+    dispatch({
+      type: VALIDATE_TASK,
+    });
+  };
+
   return (
     <TaskContext.Provider
       value={{
         tasks: state.tasks,
         tasksproject: state.tasksproject,
+        errortask: state.errortask,
         getTasks,
         addTask,
+        validateTask
       }}
     >
       {props.children}
