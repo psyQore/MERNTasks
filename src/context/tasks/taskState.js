@@ -2,21 +2,26 @@ import React, { useReducer } from "react";
 import TaskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
 
-import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK } from "../../types";
+import {
+  TASKS_PROJECT,
+  ADD_TASK,
+  VALIDATE_TASK,
+  DELETE_TASK,
+} from "../../types";
 
 const TaskState = (props) => {
   const initialState = {
     tasks: [
-      { name: "Elegir Plataforma", status: true, projectId: 1 },
-      { name: "Elegir Color", status: true, projectId: 2 },
-      { name: "Elegir Metodo de Pago", status: true, projectId: 3 },
-      { name: "Elegir Hosting", status: true, projectId: 1 },
-      { name: "Elegir Plataforma de Compra", status: true, projectId: 3 },
-      { name: "Elegir Imagen", status: true, projectId: 4 },
-      { name: "Elegir Modal", status: true, projectId: 2 },
-      { name: "Elegir Color", status: true, projectId: 3 },
-      { name: "Elegir Plataforma", status: true, projectId: 1 },
-      { name: "Elegir Plataforma", status: true, projectId: 4 },
+      { id: 1, name: "Elegir Plataforma", status: true, projectId: 1 },
+      { id: 2, name: "Elegir Color", status: true, projectId: 2 },
+      { id: 3, name: "Elegir Metodo de Pago", status: true, projectId: 3 },
+      { id: 4, name: "Elegir Hosting", status: true, projectId: 1 },
+      { id: 5, name: "Elegir Logo", status: true, projectId: 3,},
+      { id: 6, name: "Elegir Imagen", status: true, projectId: 4 },
+      { id: 7, name: "Elegir Modal", status: true, projectId: 2 },
+      { id: 8, name: "Elegir Color", status: true, projectId: 3 },
+      { id: 9, name: "Elegir Plataforma", status: true, projectId: 1 },
+      { id: 10, name: "Elegir Plataforma", status: true, projectId: 4 },
     ],
     tasksproject: null,
     errortask: false,
@@ -49,6 +54,14 @@ const TaskState = (props) => {
     });
   };
 
+  // Eliminar task por id
+  const deleteTask = (id) => {
+    dispatch({
+      type: DELETE_TASK,
+      payload: id,
+    });
+  };
+
   return (
     <TaskContext.Provider
       value={{
@@ -57,7 +70,8 @@ const TaskState = (props) => {
         errortask: state.errortask,
         getTasks,
         addTask,
-        validateTask
+        validateTask,
+        deleteTask,
       }}
     >
       {props.children}

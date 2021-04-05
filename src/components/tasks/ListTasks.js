@@ -28,7 +28,7 @@ const ListTasks = () => {
             <p>There is no Task </p>
           </li>
         ) : (
-          tasksproject.map((task) => <Task  task={task} />)
+          tasksproject.map((task) => <Task key={task.id} task={task} />)
         )}
       </ul>
       <button
