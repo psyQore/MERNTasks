@@ -6,8 +6,10 @@ import {
   STATUS_TASK,
   ACTUAL_TASK,
   UPDATE_TASK,
+  CLEAR_TASK,
 } from "../../types";
 
+// eslint-disable-next-line
 export default (state, action) => {
   switch (action.type) {
     case TASKS_PROJECT:
@@ -46,7 +48,11 @@ export default (state, action) => {
         ...state,
         selectedtask: action.payload,
       };
-
+    case CLEAR_TASK:
+      return {
+        ...state,
+        selectedtask: null,
+      };
     default:
       return state;
   }

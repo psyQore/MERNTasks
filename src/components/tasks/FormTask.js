@@ -15,6 +15,7 @@ const FormTask = () => {
     validateTask,
     getTasks,
     updateTask,
+    clearTask
   } = taskContext;
 
   // useEffect que detecta si hay una selectedtask
@@ -69,6 +70,8 @@ const FormTask = () => {
     } else {
       // Actualizar task existente
       updateTask(task);
+      // Elimina task selected
+      clearTask();
     }
 
     // Obtener y filtrat las task de projectActual
