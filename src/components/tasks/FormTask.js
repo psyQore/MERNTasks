@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import projectContext from "../../context/projects/projectContext";
 import TaskContext from "../../context/tasks/taskContext";
 
@@ -8,7 +8,24 @@ const FormTask = () => {
   const { project } = projectsContext;
 
   const taskContext = useContext(TaskContext);
-  const { errortask, addTask, validateTask, getTasks } = taskContext;
+  const {
+    selectedtask,
+    errortask,
+    addTask,
+    validateTask,
+    getTasks,
+  } = taskContext;
+
+  // useEffect que detecta si hay una selectedtask
+  useEffect(() => {
+    if (selectedtask !== null) {
+      saveTask(selectedtask);
+    } else {
+      saveTask({
+        name: "",
+      });
+    }
+  }, [selectedtask]);
 
   // State del form
   const [task, saveTask] = useState({
@@ -47,7 +64,7 @@ const FormTask = () => {
     addTask(task);
 
     // Obtener y filtrat las task de projectActual
-    getTasks(projectActual.id)
+    getTasks(projectActual.id);
 
     // Reiniciar el form
     saveTask({
@@ -72,7 +89,7 @@ const FormTask = () => {
           <input
             type="submit"
             className="btn btn-primario btn-submit btn-block"
-            value="Add Task"
+            value={selectedtask ? "Edit Task" : "Add Task"}
           />
         </div>
       </form>
