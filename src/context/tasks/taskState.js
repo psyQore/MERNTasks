@@ -7,7 +7,8 @@ import {
   ADD_TASK,
   VALIDATE_TASK,
   DELETE_TASK,
-  STATUS_TASK
+  STATUS_TASK,
+  ACTUAL_TASK
 } from "../../types";
 
 const TaskState = (props) => {
@@ -26,6 +27,7 @@ const TaskState = (props) => {
     ],
     tasksproject: null,
     errortask: false,
+    selectedtask: null
   };
 
   // Crear el dispatch y state
@@ -71,17 +73,27 @@ const TaskState = (props) => {
     })
   }
 
+  // Extrae una task para edicion
+  const saveCurrenTask = task => {
+    dispatch({
+      type: ACTUAL_TASK,
+      payload: task,
+    })
+  }
+
   return (
     <TaskContext.Provider
       value={{
         tasks: state.tasks,
         tasksproject: state.tasksproject,
         errortask: state.errortask,
+        selectedtask: state.selectedtask,
         getTasks,
         addTask,
         validateTask,
         deleteTask,
-        changeTaskStatus
+        changeTaskStatus,
+        saveCurrenTask
       }}
     >
       {props.children}
