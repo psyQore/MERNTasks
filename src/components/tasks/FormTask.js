@@ -14,6 +14,7 @@ const FormTask = () => {
     addTask,
     validateTask,
     getTasks,
+    updateTask,
   } = taskContext;
 
   // useEffect que detecta si hay una selectedtask
@@ -57,11 +58,18 @@ const FormTask = () => {
       validateTask();
       return;
     }
-    // Pasar la validacion
-    // Agregar la nueva task al state de tasks
-    task.projectId = projectActual.id;
-    task.status = false;
-    addTask(task);
+
+    // Si es edicion o new task
+    if (selectedtask === null) {
+      // Pasar la validacion
+      // Agregar la nueva task al state de tasks
+      task.projectId = projectActual.id;
+      task.status = false;
+      addTask(task);
+    } else {
+      // Actualizar task existente
+      updateTask(task);
+    }
 
     // Obtener y filtrat las task de projectActual
     getTasks(projectActual.id);
